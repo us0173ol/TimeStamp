@@ -16,13 +16,17 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
+    Date created;
+
+    public void timeItem(){
+        this.created = new Date();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //get the current time/date
-        final Date date = new Date();
         //create button to add an item to the listview
         Button addTime = (Button) findViewById(R.id.add_time_button);
         //create listview for displaying items and time
@@ -35,8 +39,10 @@ public class MainActivity extends AppCompatActivity {
         addTime.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                //convert date to string for display
-                String timeText = date.toString();
+                //call method to create a new time/date
+                timeItem();
+                //convert time/date to string for display
+                String timeText = created.toString();
                 //add the time to the list
                 arrayAdapter.add(timeText);
                 //update the UI
